@@ -26,5 +26,10 @@
     name: "{{ chrony_tzdata_package }}"
     state: present
 
+- name: Delete /etc/localtime file to avoid permission conflicts
+  file:
+    state: absent
+    path: "/etc/localtime"
+
 - name: Set timezone
   timezone: name="{{ chrony_timezone }}"
